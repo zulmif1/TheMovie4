@@ -1,0 +1,32 @@
+<resources>
+    <string name="app_name">Katalog Film</string>
+    <string name="title_home">Beranda</string>
+
+    <string name="title_menu_movies">Film</string>
+    <string name="title_menu_tvshow">Acara TV</string>
+
+    <string name="title_activity_movie_detail">Detail Aktivitas Film</string>
+    <string name="image_poster">Gambar poster</string>
+    <string name="description">Deskripsi</string>
+    <string name="title">Judul</string>
+    <string name="languange">Indonesia</string>
+    <string name="change_language_settings">Konfigurasi Bahasa</string>
+    <string name="title_tv">Acara TV</string>
+    <string name="title_movie">Film</string>
+    <string name="favorite">Disukai</string>
+    <string name="home">Beranda</string>
+    <string name="image_movie">Deskripsi</string>
+    <string name="movie">Film</string>
+    <string name="movieOverview">Ulasan</string>
+    <string name="movieTitle">Judul</string>
+    <string name="nav_header_desc">Foto Saya</string>
+    <string name="nav_header_subtitle">https://www.iainpekalongan.ac.id/</string>
+    <string name="nav_header_title">The Movie 3</string>
+    <string name="navigation_drawer_close">Tutup Navigasi</string>
+    <string name="navigation_drawer_open">Buka Navigasi</string>
+    <string name="releaseDate">0000-00-00</string>
+    <string name="tv_series">Acara TV</string>
+    <string name="overview">Ulasan</string>
+    <string name="to_be_confirmed">Belum ada</string>
+    <string name="date_of_release">Tayang</string>
+</resources>

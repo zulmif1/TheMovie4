@@ -1,0 +1,32 @@
+<resources>
+    <string name="app_name">Movie Catalogue</string>
+    <string name="title_home">Home</string>
+
+    <string name="title_menu_movies">Movies</string>
+    <string name="title_menu_tvshow">TV Show</string>
+
+    <string name="title_activity_movie_detail">MovieDetailActivity</string>
+    <string name="image_poster">Image poster</string>
+    <string name="description">Description</string>
+    <string name="title">Title</string>
+    <string name="languange">English</string>
+    <string name="change_language_settings">Language Configuration</string>
+    <string name="title_tv">TV</string>
+    <string name="title_movie">Movie</string>
+    <string name="favorite">Favorite</string>
+    <string name="home">Home</string>
+    <string name="image_movie">Description</string>
+    <string name="movie">Movie</string>
+    <string name="movieOverview">Overview</string>
+    <string name="movieTitle">Title</string>
+    <string name="nav_header_desc">My Photo</string>
+    <string name="nav_header_subtitle">https://www.iainpekalongan.ac.id/</string>
+    <string name="nav_header_title">The Movie 3</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="releaseDate">0000-00-00</string>
+    <string name="tv_series">TV Series</string>
+    <string name="overview">Overview</string>
+    <string name="to_be_confirmed">To be Confirmed</string>
+    <string name="date_of_release">Date of Release</string>
+</resources>
