@@ -1,9 +1,3 @@
-/*
- * Created by omrobbie.
- * Copyright (c) 2018. All rights reserved.
- * Last modified 11/11/17 3:14 PM.
- */
-
 package id.ac.iainpekalongan.themovie4.database;
 
 import android.content.Context;
@@ -11,9 +5,6 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
 import id.ac.iainpekalongan.themovie4.provider.FavoriteColumns;
-
-import id.ac.iainpekalongan.themovie4.provider.FavoriteColumns;
-
 
 
 public class DatabaseHelper extends SQLiteOpenHelper {

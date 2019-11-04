@@ -1,14 +1,6 @@
-/*
- * Created by omrobbie.
- * Copyright (c) 2018. All rights reserved.
- * Last modified 11/11/17 3:14 PM.
- */
-
 package id.ac.iainpekalongan.themovie4.provider;
 
 import android.provider.BaseColumns;
-
-
 
 public class FavoriteColumns implements BaseColumns {
     public static String TABLE_NAME = "favorite_movie";

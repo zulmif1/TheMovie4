@@ -1,3 +1,9 @@
+<!--
+  ~ Created by omrobbie.
+  ~ Copyright (c) 2018. All rights reserved.
+  ~ Last modified 10/10/17 12:41 AM.
+  -->
+
 <resources>
 
     <!-- Base application theme. -->
@@ -16,11 +22,5 @@
     <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
 
     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
-
-    <style name="MyTabHeader" parent="TextAppearance.Design.Tab">
-        <item name="android:textSize">18sp</item>
-    </style>
-
-
 
 </resources>

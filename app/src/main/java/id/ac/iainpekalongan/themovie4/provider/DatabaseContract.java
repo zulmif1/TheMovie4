@@ -1,19 +1,12 @@
-/*
- * Created by omrobbie.
- * Copyright (c) 2018. All rights reserved.
- * Last modified 11/11/17 3:14 PM.
- */
-
 package id.ac.iainpekalongan.themovie4.provider;
 
 import android.database.Cursor;
 import android.net.Uri;
 
 
-
 public class DatabaseContract {
 
-    public static final String AUTHORITY = "com.omrobbie.cataloguemovie";
+    public static final String AUTHORITY = "id.ac.iainpekalongan.themovie4";
 
     public static final Uri CONTENT_URI = new Uri.Builder().scheme("content")
             .authority(AUTHORITY)
