@@ -1,16 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!--
-  ~ Created by omrobbie.
-  ~ Copyright (c) 2018. All rights reserved.
-  ~ Last modified 10/10/17 12:55 AM.
-  -->
 
 <android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.omrobbie.cataloguemovieuiux.MainActivity">
+    tools:context="id.ac.iainpekalongan.themovie4.MainActivity">
 
     <android.support.design.widget.AppBarLayout
         android:id="@+id/appBar"

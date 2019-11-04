@@ -1,9 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!--
-  ~ Created by omrobbie.
-  ~ Copyright (c) 2018. All rights reserved.
-  ~ Last modified 11/9/17 1:29 PM.
-  -->
+
 
 <android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -11,7 +7,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
-    tools:context="com.omrobbie.cataloguemovieuiux.DetailActivity">
+    tools:context="id.ac.iainpekalongan.themovie4.DetailActivity">
 
     <include layout="@layout/detail_appbar" />
 
