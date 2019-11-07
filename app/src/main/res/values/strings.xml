@@ -13,8 +13,8 @@
     <string name="key_reminder_upcoming" translatable="false">reminder_upcoming</string>
     <string name="key_setting_locale" translatable="false">setting_locale</string>
 
-    <string name="label_now_playing">Now Playing</string>
-    <string name="label_upcoming">Upcoming</string>
+    <string name="label_movies">Movies</string>
+    <string name="label_tv_show">TV Show</string>
     <string name="label_favorite" translatable="false">Favorite</string>
 
     <string name="label_release_date">Release Date</string>

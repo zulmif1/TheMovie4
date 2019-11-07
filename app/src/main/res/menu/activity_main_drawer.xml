@@ -5,27 +5,18 @@
 
     <group android:checkableBehavior="single">
         <item
-            android:id="@+id/nav_now_playing"
+            android:id="@+id/nav_movies"
             android:icon="@drawable/ic_local_activity"
-            android:title="@string/label_now_playing" />
+            android:title="@string/label_movies" />
         <item
-            android:id="@+id/nav_upcoming"
+            android:id="@+id/nav_tv_show"
             android:icon="@drawable/ic_move_to_inbox"
-            android:title="@string/label_upcoming" />
+            android:title="@string/label_tv_show" />
         <item
             android:id="@+id/nav_favorite"
             android:icon="@drawable/ic_favorite"
             android:title="@string/label_favorite"
             />
     </group>
-
-    <item android:title="@string/label_communicate">
-        <menu>
-            <item
-                android:id="@+id/nav_share"
-                android:icon="@drawable/ic_share"
-                android:title="@string/label_share" />
-        </menu>
-    </item>
 
 </menu>

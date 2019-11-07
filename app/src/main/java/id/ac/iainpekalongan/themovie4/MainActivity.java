@@ -9,12 +9,10 @@ import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.SearchView;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 
-import id.ac.iainpekalongan.themovie4.feature.SearchActivity;
 import id.ac.iainpekalongan.themovie4.feature.settings.SettingsActivity;
 import id.ac.iainpekalongan.themovie4.util.ATabPager;
 
@@ -68,25 +66,6 @@ public class MainActivity extends AppCompatActivity
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.main, menu);
-
-        SearchView searchView = (SearchView) menu.findItem(R.id.action_search).getActionView();
-        searchView.setQueryHint(getResources().getString(R.string.label_search));
-        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
-            @Override
-            public boolean onQueryTextSubmit(String query) {
-                Intent intent = new Intent(getApplicationContext(), SearchActivity.class);
-                intent.putExtra(SearchActivity.MOVIE_TITLE, query);
-                startActivity(intent);
-
-                return false;
-            }
-
-            @Override
-            public boolean onQueryTextChange(String newText) {
-                return false;
-            }
-        });
-
         return true;
     }
 
@@ -113,18 +92,9 @@ public class MainActivity extends AppCompatActivity
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-        if (id == R.id.nav_now_playing) selectTab(0);
-        if (id == R.id.nav_upcoming) selectTab(1);
+        if (id == R.id.nav_movies) selectTab(0);
+        if (id == R.id.nav_tv_show) selectTab(1);
         if (id == R.id.nav_favorite) selectTab(2);
-
-        if (id == R.id.nav_share) {
-            Intent intent = new Intent(Intent.ACTION_SEND);
-            intent.setType("text/plain");
-            intent.putExtra(Intent.EXTRA_TEXT, getResources().getString(R.string.app_name));
-            intent.putExtra(Intent.EXTRA_SUBJECT, getResources().getString(R.string.app_name));
-            intent.putExtra(Intent.EXTRA_TEXT, getResources().getString(R.string.app_name) + "\n\n" + getString(R.string.share_description));
-            startActivity(Intent.createChooser(intent, getResources().getString(R.string.label_share)));
-        }
 
         drawerLayout.closeDrawer(GravityCompat.START);
         return true;
@@ -173,8 +143,8 @@ public class MainActivity extends AppCompatActivity
         viewPager.setAdapter(new ATabPager(getSupportFragmentManager()));
         tabLayout.setupWithViewPager(viewPager);
 
-        tabLayout.getTabAt(0).setText(R.string.label_now_playing);
-        tabLayout.getTabAt(1).setText(R.string.label_upcoming);
+        tabLayout.getTabAt(0).setText(R.string.label_movies);
+        tabLayout.getTabAt(1).setText(R.string.label_tv_show);
         tabLayout.getTabAt(2).setText(R.string.label_favorite);
         tabLayout.setOnTabSelectedListener(this);
     }
