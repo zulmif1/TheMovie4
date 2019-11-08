@@ -13,7 +13,7 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.target.Target;
 import id.ac.iainpekalongan.themovie4.BuildConfig;
 import id.ac.iainpekalongan.themovie4.R;
-import id.ac.iainpekalongan.themovie4.model.ResultsItem;
+import id.ac.iainpekalongan.themovie4.model.ResultsMovieItem;
 
 import java.util.concurrent.ExecutionException;
 
@@ -60,7 +60,7 @@ public class StackRemoteViewsFactory implements RemoteViewsService.RemoteViewsFa
 
     @Override
     public RemoteViews getViewAt(int i) {
-        ResultsItem item = getItem(i);
+        ResultsMovieItem item = getItem(i);
         RemoteViews rv = new RemoteViews(mContext.getPackageName(), R.layout.stack_widget_item);
 
         Bitmap bitmap = null;
@@ -107,11 +107,11 @@ public class StackRemoteViewsFactory implements RemoteViewsService.RemoteViewsFa
         return false;
     }
 
-    private ResultsItem getItem(int position) {
+    private ResultsMovieItem getItem(int position) {
         if (!list.moveToPosition(position)) {
             throw new IllegalStateException("Position invalid!");
         }
 
-        return new ResultsItem(list);
+        return new ResultsMovieItem(list);
     }
 }

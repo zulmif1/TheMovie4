@@ -32,7 +32,7 @@ public class MoviesFragment extends Fragment {
     private Context context;
     private Unbinder unbinder;
 
-    @BindView(R.id.rv_now_playing)
+    @BindView(R.id.rv_movies)
     RecyclerView rv_now_playing;
 
     private MovieAdapter adapter;

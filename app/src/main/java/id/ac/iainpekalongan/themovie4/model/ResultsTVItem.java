@@ -17,7 +17,7 @@ import static id.ac.iainpekalongan.themovie4.provider.FavoriteColumns.COLUMN_REL
 import static id.ac.iainpekalongan.themovie4.provider.FavoriteColumns.COLUMN_TITLE;
 import static id.ac.iainpekalongan.themovie4.provider.FavoriteColumns.COLUMN_VOTE;
 
-public class ResultsItem {
+public class ResultsTVItem {
 
     @SerializedName("overview")
     private String overview;
@@ -25,7 +25,7 @@ public class ResultsItem {
     @SerializedName("original_language")
     private String originalLanguage;
 
-    @SerializedName("original_title")
+    @SerializedName("original_name")
     private String originalTitle;
 
     @SerializedName("video")
@@ -173,10 +173,10 @@ public class ResultsItem {
         return voteCount;
     }
 
-    public ResultsItem() {
+    public ResultsTVItem() {
     }
 
-    public ResultsItem(Cursor cursor) {
+    public ResultsTVItem(Cursor cursor) {
         this.id = getColumnInt(cursor, _ID);
         this.title = getColumnString(cursor, COLUMN_TITLE);
         this.backdropPath = getColumnString(cursor, COLUMN_BACKDROP);
@@ -189,7 +189,7 @@ public class ResultsItem {
     @Override
     public String toString() {
         return
-                "ResultsItem{" +
+                "ResultsMovieItem{" +
                         "overview = '" + overview + '\'' +
                         ",original_language = '" + originalLanguage + '\'' +
                         ",original_title = '" + originalTitle + '\'' +

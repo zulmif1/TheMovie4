@@ -6,7 +6,7 @@
     tools:context="id.ac.iainpekalongan.themovie4.feature.MoviesFragment">
 
     <android.support.v7.widget.RecyclerView
-        android:id="@+id/rv_now_playing"
+        android:id="@+id/rv_movies"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 

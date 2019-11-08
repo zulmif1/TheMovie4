@@ -3,10 +3,9 @@ package id.ac.iainpekalongan.themovie4.adapter;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
-import android.widget.ListView;
 
 import id.ac.iainpekalongan.themovie4.R;
-import id.ac.iainpekalongan.themovie4.model.ResultsItem;
+import id.ac.iainpekalongan.themovie4.model.ResultsMovieItem;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -14,7 +13,7 @@ import java.util.List;
 
 public class MovieAdapter extends RecyclerView.Adapter<MovieViewHolder> {
 
-    private List<ResultsItem> list = new ArrayList<>();
+    private List<ResultsMovieItem> list = new ArrayList<>();
 
     public MovieAdapter() {
     }
@@ -24,13 +23,13 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieViewHolder> {
         notifyDataSetChanged();
     }
 
-    public void replaceAll(List<ResultsItem> items) {
+    public void replaceAll(List<ResultsMovieItem> items) {
         list.clear();
         list = items;
         notifyDataSetChanged();
     }
 
-    public void updateData(List<ResultsItem> items) {
+    public void updateData(List<ResultsMovieItem> items) {
         list.addAll(items);
         notifyDataSetChanged();
     }

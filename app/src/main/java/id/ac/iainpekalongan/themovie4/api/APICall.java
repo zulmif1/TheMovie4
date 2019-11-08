@@ -12,7 +12,7 @@ import retrofit2.http.Query;
 
 public interface APICall {
 
-    @GET("movie/now_playing")
+    @GET("discover/movie")
     Call<MoviesModel> getMovie(@Query("language") String language);
 
     @GET("movie/{movie_id}")

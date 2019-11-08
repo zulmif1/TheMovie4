@@ -32,7 +32,7 @@ public class TVFragment extends Fragment {
     private Context context;
     private Unbinder unbinder;
 
-    @BindView(R.id.rv_upcoming)
+    @BindView(R.id.rv_tv_show)
     RecyclerView rv_upcoming;
 
     private MovieAdapter adapter;

@@ -18,7 +18,7 @@ import com.google.gson.Gson;
 
 import id.ac.iainpekalongan.themovie4.api.APIClient;
 import id.ac.iainpekalongan.themovie4.database.FavoriteHelper;
-import id.ac.iainpekalongan.themovie4.model.ResultsItem;
+import id.ac.iainpekalongan.themovie4.model.ResultsMovieItem;
 import id.ac.iainpekalongan.themovie4.model.detail.DetailModel;
 import id.ac.iainpekalongan.themovie4.provider.FavoriteColumns;
 import id.ac.iainpekalongan.themovie4.util.DateTime;
@@ -101,7 +101,7 @@ public class DetailActivity extends AppCompatActivity {
     private APIClient apiClient = new APIClient();
     private Gson gson = new Gson();
 
-    private ResultsItem item;
+    private ResultsMovieItem item;
     private FavoriteHelper favoriteHelper;
     private Boolean isFavorite = false;
 
@@ -117,7 +117,7 @@ public class DetailActivity extends AppCompatActivity {
         collapsing_toolbar.setExpandedTitleColor(getResources().getColor(android.R.color.transparent));
 
         String json = getIntent().getStringExtra(MOVIE_ITEM);
-        item = gson.fromJson(json, ResultsItem.class);
+        item = gson.fromJson(json, ResultsMovieItem.class);
         loadData();
 
         iv_fav.setOnClickListener(new View.OnClickListener() {

@@ -13,7 +13,7 @@ import com.google.gson.Gson;
 import id.ac.iainpekalongan.themovie4.BuildConfig;
 import id.ac.iainpekalongan.themovie4.DetailActivity;
 import id.ac.iainpekalongan.themovie4.R;
-import id.ac.iainpekalongan.themovie4.model.ResultsItem;
+import id.ac.iainpekalongan.themovie4.model.ResultsMovieItem;
 import id.ac.iainpekalongan.themovie4.util.DateTime;
 
 import butterknife.BindView;
@@ -36,15 +36,12 @@ public class MovieViewHolder extends RecyclerView.ViewHolder {
     @BindView(R.id.btn_detail)
     Button btn_detail;
 
-    @BindView(R.id.btn_share)
-    Button btn_share;
-
     public MovieViewHolder(View itemView) {
         super(itemView);
         ButterKnife.bind(this, itemView);
     }
 
-    public void bind(final ResultsItem item) {
+    public void bind(final ResultsMovieItem item) {
         tv_title.setText(item.getTitle());
         tv_overview.setText(item.getOverview());
         tv_release_date.setText(DateTime.getLongDate(item.getReleaseDate()));
@@ -65,16 +62,5 @@ public class MovieViewHolder extends RecyclerView.ViewHolder {
             }
         });
 
-        btn_share.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(Intent.ACTION_SEND);
-                intent.setType("text/plain");
-                intent.putExtra(Intent.EXTRA_TITLE, item.getTitle());
-                intent.putExtra(Intent.EXTRA_SUBJECT, item.getTitle());
-                intent.putExtra(Intent.EXTRA_TEXT, item.getTitle() + "\n\n" + item.getOverview());
-                itemView.getContext().startActivity(Intent.createChooser(intent, itemView.getResources().getString(R.string.label_share)));
-            }
-        });
     }
 }
