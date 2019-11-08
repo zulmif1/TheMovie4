@@ -14,7 +14,7 @@ import android.widget.Toast;
 import id.ac.iainpekalongan.themovie4.R;
 import id.ac.iainpekalongan.themovie4.adapter.MovieAdapter;
 import id.ac.iainpekalongan.themovie4.api.APIClient;
-import id.ac.iainpekalongan.themovie4.model.NowPlayingModel;
+import id.ac.iainpekalongan.themovie4.model.TVModel;
 import id.ac.iainpekalongan.themovie4.util.Language;
 
 import butterknife.BindView;
@@ -27,20 +27,20 @@ import retrofit2.Response;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class NowPlayingFragment extends Fragment {
+public class TVFragment extends Fragment {
 
     private Context context;
     private Unbinder unbinder;
 
-    @BindView(R.id.rv_now_playing)
-    RecyclerView rv_now_playing;
+    @BindView(R.id.rv_upcoming)
+    RecyclerView rv_upcoming;
 
     private MovieAdapter adapter;
 
-    private Call<NowPlayingModel> apiCall;
+    private Call<TVModel> apiCall;
     private APIClient apiClient = new APIClient();
 
-    public NowPlayingFragment() {
+    public TVFragment() {
         // Required empty public constructor
     }
 
@@ -48,7 +48,7 @@ public class NowPlayingFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_now_playing, container, false);
+        View view = inflater.inflate(R.layout.fragment_upcoming, container, false);
         context = view.getContext();
 
         unbinder = ButterKnife.bind(this, view);
@@ -68,22 +68,22 @@ public class NowPlayingFragment extends Fragment {
 
     private void setupList() {
         adapter = new MovieAdapter();
-        rv_now_playing.setLayoutManager(new LinearLayoutManager(context));
-        rv_now_playing.setAdapter(adapter);
+        rv_upcoming.setLayoutManager(new LinearLayoutManager(context));
+        rv_upcoming.setAdapter(adapter);
     }
 
     private void loadData() {
-        apiCall = apiClient.getService().getNowPlayingMovie(Language.getCountry());
-        apiCall.enqueue(new Callback<NowPlayingModel>() {
+        apiCall = apiClient.getService().getTVShow(Language.getCountry());
+        apiCall.enqueue(new Callback<TVModel>() {
             @Override
-            public void onResponse(Call<NowPlayingModel> call, Response<NowPlayingModel> response) {
+            public void onResponse(Call<TVModel> call, Response<TVModel> response) {
                 if (response.isSuccessful()) {
                     adapter.replaceAll(response.body().getResults());
                 } else loadFailed();
             }
 
             @Override
-            public void onFailure(Call<NowPlayingModel> call, Throwable t) {
+            public void onFailure(Call<TVModel> call, Throwable t) {
                 loadFailed();
             }
         });

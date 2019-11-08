@@ -4,8 +4,8 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 
-import id.ac.iainpekalongan.themovie4.feature.NowPlayingFragment;
-import id.ac.iainpekalongan.themovie4.feature.UpcomingFragment;
+import id.ac.iainpekalongan.themovie4.feature.MoviesFragment;
+import id.ac.iainpekalongan.themovie4.feature.TVFragment;
 import id.ac.iainpekalongan.themovie4.feature.favorite.FavoriteFragment;
 
 
@@ -26,10 +26,10 @@ public class ATabPager extends FragmentPagerAdapter {
     public Fragment getItem(int position) {
         switch (position) {
             case 0:
-                return new NowPlayingFragment();
+                return new MoviesFragment();
 
             case 1:
-                return new UpcomingFragment();
+                return new TVFragment();
 
             case 2:
                 return new FavoriteFragment();

@@ -14,7 +14,7 @@ import android.widget.Toast;
 import id.ac.iainpekalongan.themovie4.R;
 import id.ac.iainpekalongan.themovie4.adapter.MovieAdapter;
 import id.ac.iainpekalongan.themovie4.api.APIClient;
-import id.ac.iainpekalongan.themovie4.model.UpcomingModel;
+import id.ac.iainpekalongan.themovie4.model.MoviesModel;
 import id.ac.iainpekalongan.themovie4.util.Language;
 
 import butterknife.BindView;
@@ -27,20 +27,20 @@ import retrofit2.Response;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class UpcomingFragment extends Fragment {
+public class MoviesFragment extends Fragment {
 
     private Context context;
     private Unbinder unbinder;
 
-    @BindView(R.id.rv_upcoming)
-    RecyclerView rv_upcoming;
+    @BindView(R.id.rv_now_playing)
+    RecyclerView rv_now_playing;
 
     private MovieAdapter adapter;
 
-    private Call<UpcomingModel> apiCall;
+    private Call<MoviesModel> apiCall;
     private APIClient apiClient = new APIClient();
 
-    public UpcomingFragment() {
+    public MoviesFragment() {
         // Required empty public constructor
     }
 
@@ -48,7 +48,7 @@ public class UpcomingFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_upcoming, container, false);
+        View view = inflater.inflate(R.layout.fragment_now_playing, container, false);
         context = view.getContext();
 
         unbinder = ButterKnife.bind(this, view);
@@ -68,22 +68,22 @@ public class UpcomingFragment extends Fragment {
 
     private void setupList() {
         adapter = new MovieAdapter();
-        rv_upcoming.setLayoutManager(new LinearLayoutManager(context));
-        rv_upcoming.setAdapter(adapter);
+        rv_now_playing.setLayoutManager(new LinearLayoutManager(context));
+        rv_now_playing.setAdapter(adapter);
     }
 
     private void loadData() {
-        apiCall = apiClient.getService().getUpcomingMovie(Language.getCountry());
-        apiCall.enqueue(new Callback<UpcomingModel>() {
+        apiCall = apiClient.getService().getMovie(Language.getCountry());
+        apiCall.enqueue(new Callback<MoviesModel>() {
             @Override
-            public void onResponse(Call<UpcomingModel> call, Response<UpcomingModel> response) {
+            public void onResponse(Call<MoviesModel> call, Response<MoviesModel> response) {
                 if (response.isSuccessful()) {
                     adapter.replaceAll(response.body().getResults());
                 } else loadFailed();
             }
 
             @Override
-            public void onFailure(Call<UpcomingModel> call, Throwable t) {
+            public void onFailure(Call<MoviesModel> call, Throwable t) {
                 loadFailed();
             }
         });

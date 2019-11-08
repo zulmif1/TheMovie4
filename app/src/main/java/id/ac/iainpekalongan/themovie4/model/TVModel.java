@@ -4,7 +4,7 @@ import com.google.gson.annotations.SerializedName;
 
 import java.util.List;
 
-public class UpcomingModel {
+public class TVModel {
 
     @SerializedName("dates")
     private Dates dates;
@@ -64,7 +64,7 @@ public class UpcomingModel {
     @Override
     public String toString() {
         return
-                "UpcomingModel{" +
+                "TVModel{" +
                         "dates = '" + dates + '\'' +
                         ",page = '" + page + '\'' +
                         ",total_pages = '" + totalPages + '\'' +

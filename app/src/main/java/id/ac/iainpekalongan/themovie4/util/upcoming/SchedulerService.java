@@ -18,7 +18,7 @@ import id.ac.iainpekalongan.themovie4.DetailActivity;
 import id.ac.iainpekalongan.themovie4.R;
 import id.ac.iainpekalongan.themovie4.api.APIClient;
 import id.ac.iainpekalongan.themovie4.model.ResultsItem;
-import id.ac.iainpekalongan.themovie4.model.UpcomingModel;
+import id.ac.iainpekalongan.themovie4.model.TVModel;
 import id.ac.iainpekalongan.themovie4.util.Language;
 
 import java.util.List;
@@ -32,7 +32,7 @@ public class SchedulerService extends GcmTaskService {
 
     public static String TAG_TASK_UPCOMING = "upcoming movies";
 
-    private Call<UpcomingModel> apiCall;
+    private Call<TVModel> apiCall;
     private APIClient apiClient = new APIClient();
 
     @Override
@@ -47,10 +47,10 @@ public class SchedulerService extends GcmTaskService {
     }
 
     private void loadData() {
-        apiCall = apiClient.getService().getUpcomingMovie(Language.getCountry());
-        apiCall.enqueue(new Callback<UpcomingModel>() {
+        apiCall = apiClient.getService().getTVShow(Language.getCountry());
+        apiCall.enqueue(new Callback<TVModel>() {
             @Override
-            public void onResponse(Call<UpcomingModel> call, Response<UpcomingModel> response) {
+            public void onResponse(Call<TVModel> call, Response<TVModel> response) {
                 if (response.isSuccessful()) {
                     List<ResultsItem> items = response.body().getResults();
                     int index = new Random().nextInt(items.size());
@@ -66,7 +66,7 @@ public class SchedulerService extends GcmTaskService {
             }
 
             @Override
-            public void onFailure(Call<UpcomingModel> call, Throwable t) {
+            public void onFailure(Call<TVModel> call, Throwable t) {
                 loadFailed();
             }
         });
