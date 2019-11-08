@@ -2,6 +2,7 @@ package id.ac.iainpekalongan.themovie4;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.provider.Settings;
 import android.support.design.widget.NavigationView;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.GravityCompat;
@@ -13,7 +14,6 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 
-import id.ac.iainpekalongan.themovie4.feature.settings.SettingsActivity;
 import id.ac.iainpekalongan.themovie4.util.ATabPager;
 
 import butterknife.BindView;
@@ -78,7 +78,7 @@ public class MainActivity extends AppCompatActivity
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
-            Intent intent = new Intent(this, SettingsActivity.class);
+            Intent intent = new Intent(Settings.ACTION_LOCALE_SETTINGS);
             startActivity(intent);
             return true;
         }
