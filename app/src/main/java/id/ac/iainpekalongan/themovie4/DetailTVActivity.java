@@ -44,7 +44,7 @@ public class DetailTVActivity extends AppCompatActivity {
     @BindView(R.id.toolbar)
     Toolbar toolbar;
 
-    @BindView(R.id.tv_title)
+    @BindView(R.id.tv_name)
     TextView tv_title;
 
     @BindView(R.id.img_backdrop)
@@ -73,9 +73,6 @@ public class DetailTVActivity extends AppCompatActivity {
 
     @BindView(R.id.tv_overview)
     TextView tv_overview;
-
-    @BindView(R.id.tv_companies)
-    TextView tv_companies;
 
     @BindView(R.id.iv_fav)
     ImageView iv_fav;
@@ -208,13 +205,6 @@ public class DetailTVActivity extends AppCompatActivity {
                     }
                     tv_genres.setText(genres);
 
-
-                    String companies = "";
-                    size = item.getProductionCompanies().size();
-                    for (int i = 0; i < size; i++) {
-                        companies += "√ " + item.getProductionCompanies().get(i).getName() + (i + 1 < size ? "\n" : "");
-                    }
-                    tv_companies.setText(companies);
                 } else loadFailed();
             }
 

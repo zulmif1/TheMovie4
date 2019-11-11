@@ -57,16 +57,6 @@
             android:readPermission="id.ac.iainpekalongan.themovie4.READ_DATABASE"
             android:writePermission="id.ac.iainpekalongan.themovie4.WRITE_DATABASE" />
 
-        <receiver android:name=".widget.StackWidget">
-            <intent-filter>
-                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
-            </intent-filter>
-
-            <meta-data
-                android:name="android.appwidget.provider"
-                android:resource="@xml/stack_widget_info" />
-        </receiver>
-
         <service
             android:name=".widget.StackWidgetService"
             android:enabled="true"

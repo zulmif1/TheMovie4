@@ -15,7 +15,7 @@
         android:orientation="horizontal">
 
         <TextView
-            android:id="@+id/tv_title"
+            android:id="@+id/tv_name"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginBottom="@dimen/def_clear_space"
@@ -55,7 +55,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/label_release_date"
+                android:text="@string/label_first_air_date"
                 android:textStyle="bold" />
 
             <TextView
@@ -88,7 +88,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/def_clear_space"
-                android:text="@string/label_genres"
+                android:text="@string/label_tv_genres"
                 android:textStyle="bold" />
 
             <TextView

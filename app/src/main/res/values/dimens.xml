@@ -11,8 +11,6 @@
 
     <dimen name="img_poster_154_width">154dp</dimen>
     <dimen name="img_poster_154_height">231dp</dimen>
-    <dimen name="img_poster_92_width">92dp</dimen>
-    <dimen name="img_poster_92_height">138dp</dimen>
 
     <!--
 Refer to App Widget Documentation for margin information

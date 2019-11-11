@@ -24,8 +24,6 @@
 
             <include layout="@layout/detail_overview" />
 
-            <include layout="@layout/detail_tv_production" />
-
         </LinearLayout>
 
     </android.support.v4.widget.NestedScrollView>
