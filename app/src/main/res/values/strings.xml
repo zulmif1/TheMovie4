@@ -24,7 +24,6 @@
     <string name="label_countries">Countries</string>
 
     <string name="label_detail">Detail</string>
-    <string name="label_share">Share</string>
 
     <string name="cv_save">Add to favorite</string>
     <string name="cv_remove" translatable="false">Delete from favorite</string>
