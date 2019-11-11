@@ -14,7 +14,7 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
 import com.google.gson.Gson;
 import id.ac.iainpekalongan.themovie4.BuildConfig;
-import id.ac.iainpekalongan.themovie4.DetailActivity;
+import id.ac.iainpekalongan.themovie4.DetailMovieActivity;
 import id.ac.iainpekalongan.themovie4.R;
 import id.ac.iainpekalongan.themovie4.model.ResultsMovieItem;
 import id.ac.iainpekalongan.themovie4.util.DateTime;
@@ -100,8 +100,8 @@ public class FavoriteAdapter extends RecyclerView.Adapter<FavoriteAdapter.ViewHo
             btn_detail.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    Intent intent = new Intent(itemView.getContext(), DetailActivity.class);
-                    intent.putExtra(DetailActivity.MOVIE_ITEM, new Gson().toJson(item));
+                    Intent intent = new Intent(itemView.getContext(), DetailMovieActivity.class);
+                    intent.putExtra(DetailMovieActivity.MOVIE_ITEM, new Gson().toJson(item));
                     itemView.getContext().startActivity(intent);
                 }
             });

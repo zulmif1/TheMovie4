@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
-    tools:context="id.ac.iainpekalongan.themovie4.DetailActivity">
+    tools:context="id.ac.iainpekalongan.themovie4.DetailMovieActivity">
 
     <include layout="@layout/detail_appbar" />
 

@@ -36,7 +36,7 @@ import retrofit2.Response;
 
 import static id.ac.iainpekalongan.themovie4.provider.DatabaseContract.CONTENT_URI;
 
-public class DetailActivity extends AppCompatActivity {
+public class DetailMovieActivity extends AppCompatActivity {
 
     public static final String MOVIE_ITEM = "movie_item";
 
@@ -226,7 +226,7 @@ public class DetailActivity extends AppCompatActivity {
                     tv_genres.setText(genres);
 
                     if (item.getBelongsToCollection() != null) {
-                        Glide.with(DetailActivity.this)
+                        Glide.with(DetailMovieActivity.this)
                                 .load(BuildConfig.BASE_URL_IMG + "w92" + item.getBelongsToCollection().getPosterPath())
                                 .into(img_poster_belongs);
 
