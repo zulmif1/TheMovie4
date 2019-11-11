@@ -14,7 +14,6 @@ import static id.ac.iainpekalongan.themovie4.provider.FavoriteColumns.COLUMN_BAC
 import static id.ac.iainpekalongan.themovie4.provider.FavoriteColumns.COLUMN_OVERVIEW;
 import static id.ac.iainpekalongan.themovie4.provider.FavoriteColumns.COLUMN_POSTER;
 import static id.ac.iainpekalongan.themovie4.provider.FavoriteColumns.COLUMN_RELEASE_DATE;
-import static id.ac.iainpekalongan.themovie4.provider.FavoriteColumns.COLUMN_TITLE;
 import static id.ac.iainpekalongan.themovie4.provider.FavoriteColumns.COLUMN_VOTE;
 
 public class ResultsTVItem {
@@ -26,13 +25,18 @@ public class ResultsTVItem {
     private String originalLanguage;
 
     @SerializedName("original_name")
-    private String originalTitle;
+    private String originalName;
 
-    @SerializedName("video")
-    private boolean video;
+    @SerializedName("name")
+    private String name;
 
-    @SerializedName("title")
-    private String title;
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
 
     @SerializedName("genre_ids")
     private List<Integer> genreIds;
@@ -43,8 +47,8 @@ public class ResultsTVItem {
     @SerializedName("backdrop_path")
     private String backdropPath;
 
-    @SerializedName("release_date")
-    private String releaseDate;
+    @SerializedName("first_air_date")
+    private String firstAirDate;
 
     @SerializedName("vote_average")
     private double voteAverage;
@@ -54,9 +58,6 @@ public class ResultsTVItem {
 
     @SerializedName("id")
     private int id;
-
-    @SerializedName("adult")
-    private boolean adult;
 
     @SerializedName("vote_count")
     private int voteCount;
@@ -77,28 +78,12 @@ public class ResultsTVItem {
         return originalLanguage;
     }
 
-    public void setOriginalTitle(String originalTitle) {
-        this.originalTitle = originalTitle;
+    public void setOriginalName(String originalName) {
+        this.originalName = originalName;
     }
 
-    public String getOriginalTitle() {
-        return originalTitle;
-    }
-
-    public void setVideo(boolean video) {
-        this.video = video;
-    }
-
-    public boolean isVideo() {
-        return video;
-    }
-
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
-    public String getTitle() {
-        return title;
+    public String getOriginalName() {
+        return originalName;
     }
 
     public void setGenreIds(List<Integer> genreIds) {
@@ -125,12 +110,12 @@ public class ResultsTVItem {
         return backdropPath;
     }
 
-    public void setReleaseDate(String releaseDate) {
-        this.releaseDate = releaseDate;
+    public void setFirstAirDate(String firstAirDate) {
+        this.firstAirDate = firstAirDate;
     }
 
-    public String getReleaseDate() {
-        return releaseDate;
+    public String getFirstAirDate() {
+        return firstAirDate;
     }
 
     public void setVoteAverage(double voteAverage) {
@@ -157,14 +142,6 @@ public class ResultsTVItem {
         return id;
     }
 
-    public void setAdult(boolean adult) {
-        this.adult = adult;
-    }
-
-    public boolean isAdult() {
-        return adult;
-    }
-
     public void setVoteCount(int voteCount) {
         this.voteCount = voteCount;
     }
@@ -178,10 +155,9 @@ public class ResultsTVItem {
 
     public ResultsTVItem(Cursor cursor) {
         this.id = getColumnInt(cursor, _ID);
-        this.title = getColumnString(cursor, COLUMN_TITLE);
         this.backdropPath = getColumnString(cursor, COLUMN_BACKDROP);
         this.posterPath = getColumnString(cursor, COLUMN_POSTER);
-        this.releaseDate = getColumnString(cursor, COLUMN_RELEASE_DATE);
+        this.firstAirDate = getColumnString(cursor, COLUMN_RELEASE_DATE);
         this.voteAverage = getColumnDouble(cursor, COLUMN_VOTE);
         this.overview = getColumnString(cursor, COLUMN_OVERVIEW);
     }
@@ -189,20 +165,17 @@ public class ResultsTVItem {
     @Override
     public String toString() {
         return
-                "ResultsMovieItem{" +
+                "ResultsTVItem{" +
                         "overview = '" + overview + '\'' +
                         ",original_language = '" + originalLanguage + '\'' +
-                        ",original_title = '" + originalTitle + '\'' +
-                        ",video = '" + video + '\'' +
-                        ",title = '" + title + '\'' +
+                        ",original_title = '" + originalName + '\'' +
                         ",genre_ids = '" + genreIds + '\'' +
                         ",poster_path = '" + posterPath + '\'' +
                         ",backdrop_path = '" + backdropPath + '\'' +
-                        ",release_date = '" + releaseDate + '\'' +
+                        ",first_air_date = '" + firstAirDate + '\'' +
                         ",vote_average = '" + voteAverage + '\'' +
                         ",popularity = '" + popularity + '\'' +
                         ",id = '" + id + '\'' +
-                        ",adult = '" + adult + '\'' +
                         ",vote_count = '" + voteCount + '\'' +
                         "}";
     }

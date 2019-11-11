@@ -39,7 +39,7 @@ public class FavoriteAdapter extends RecyclerView.Adapter<FavoriteAdapter.ViewHo
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         return new ViewHolder(
                 LayoutInflater.from(parent.getContext()).inflate(
-                        R.layout.activity_detail_item, parent, false
+                        R.layout.activity_movie_detail_item, parent, false
                 )
         );
     }
@@ -73,7 +73,7 @@ public class FavoriteAdapter extends RecyclerView.Adapter<FavoriteAdapter.ViewHo
         @BindView(R.id.tv_overview)
         TextView tv_overview;
 
-        @BindView(R.id.tv_release_date)
+        @BindView(R.id.tv_firs_air_date)
         TextView tv_release_date;
 
         @BindView(R.id.btn_detail)

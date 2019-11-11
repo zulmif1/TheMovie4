@@ -4,18 +4,19 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
 
-import id.ac.iainpekalongan.themovie4.R;
-import id.ac.iainpekalongan.themovie4.model.ResultsMovieItem;
-
 import java.util.ArrayList;
 import java.util.List;
 
+import id.ac.iainpekalongan.themovie4.R;
+import id.ac.iainpekalongan.themovie4.model.ResultsMovieItem;
+import id.ac.iainpekalongan.themovie4.model.ResultsTVItem;
 
-public class MovieAdapter extends RecyclerView.Adapter<MovieViewHolder> {
 
-    private List<ResultsMovieItem> list = new ArrayList<>();
+public class TVAdapter extends RecyclerView.Adapter<TVViewHolder> {
 
-    public MovieAdapter() {
+    private List<ResultsTVItem> list = new ArrayList<>();
+
+    public TVAdapter() {
     }
 
     public void clearAll() {
@@ -23,30 +24,30 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieViewHolder> {
         notifyDataSetChanged();
     }
 
-    public void replaceAll(List<ResultsMovieItem> items) {
+    public void replaceAll(List<ResultsTVItem> items) {
         list.clear();
         list = items;
         notifyDataSetChanged();
     }
 
-    public void updateData(List<ResultsMovieItem> items) {
+    public void updateData(List<ResultsTVItem> items) {
         list.addAll(items);
         notifyDataSetChanged();
     }
 
 
     @Override
-    public MovieViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        return new MovieViewHolder(
+    public TVViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+        return new TVViewHolder(
                 LayoutInflater.from(parent.getContext()).inflate(
-                        R.layout.activity_movie_detail_item, parent, false
+                        R.layout.activity_tv_detail_item, parent, false
                 )
         );
     }
 
 
     @Override
-    public void onBindViewHolder(MovieViewHolder holder, int position) {
+    public void onBindViewHolder(TVViewHolder holder, int position) {
         holder.bind(list.get(position));
     }
 

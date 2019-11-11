@@ -10,16 +10,16 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
 import com.google.gson.Gson;
-import id.ac.iainpekalongan.themovie4.BuildConfig;
-import id.ac.iainpekalongan.themovie4.DetailMovieActivity;
-import id.ac.iainpekalongan.themovie4.R;
-import id.ac.iainpekalongan.themovie4.model.ResultsMovieItem;
-import id.ac.iainpekalongan.themovie4.util.DateTime;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import id.ac.iainpekalongan.themovie4.BuildConfig;
+import id.ac.iainpekalongan.themovie4.DetailTVActivity;
+import id.ac.iainpekalongan.themovie4.R;
+import id.ac.iainpekalongan.themovie4.model.ResultsTVItem;
+import id.ac.iainpekalongan.themovie4.util.DateTime;
 
-public class MovieViewHolder extends RecyclerView.ViewHolder {
+public class TVViewHolder extends RecyclerView.ViewHolder {
 
     @BindView(R.id.img_poster)
     ImageView img_poster;
@@ -31,20 +31,20 @@ public class MovieViewHolder extends RecyclerView.ViewHolder {
     TextView tv_overview;
 
     @BindView(R.id.tv_firs_air_date)
-    TextView tv_release_date;
+    TextView tv_first_air_date;
 
     @BindView(R.id.btn_detail)
     Button btn_detail;
 
-    public MovieViewHolder(View itemView) {
+    public TVViewHolder(View itemView) {
         super(itemView);
         ButterKnife.bind(this, itemView);
     }
 
-    public void bind(final ResultsMovieItem item) {
-        tv_title.setText(item.getTitle());
+    public void bind(final ResultsTVItem item) {
+        tv_title.setText(item.getOriginalName());
         tv_overview.setText(item.getOverview());
-        tv_release_date.setText(DateTime.getLongDate(item.getReleaseDate()));
+        tv_first_air_date.setText(DateTime.getLongDate(item.getFirstAirDate()));
         Glide.with(itemView.getContext())
                 .load(BuildConfig.BASE_URL_IMG + "w154" + item.getPosterPath())
                 .apply(new RequestOptions()
@@ -56,8 +56,8 @@ public class MovieViewHolder extends RecyclerView.ViewHolder {
         btn_detail.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(itemView.getContext(), DetailMovieActivity.class);
-                intent.putExtra(DetailMovieActivity.MOVIE_ITEM, new Gson().toJson(item));
+                Intent intent = new Intent(itemView.getContext(), DetailTVActivity.class);
+                intent.putExtra(DetailTVActivity.TV_ITEM, new Gson().toJson(item));
                 itemView.getContext().startActivity(intent);
             }
         });

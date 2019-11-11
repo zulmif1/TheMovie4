@@ -4,7 +4,7 @@ import com.google.gson.annotations.SerializedName;
 
 import java.util.List;
 
-public class DetailModel {
+public class MovieDetailModel {
 
     @SerializedName("original_language")
     private String originalLanguage;
@@ -284,7 +284,7 @@ public class DetailModel {
     @Override
     public String toString() {
         return
-                "DetailModel{" +
+                "MovieDetailModel{" +
                         "original_language = '" + originalLanguage + '\'' +
                         ",imdb_id = '" + imdbId + '\'' +
                         ",video = '" + video + '\'' +

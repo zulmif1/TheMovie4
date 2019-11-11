@@ -24,7 +24,7 @@
 
             <include layout="@layout/detail_overview" />
 
-            <include layout="@layout/detail_production" />
+            <include layout="@layout/detail_movie_production" />
 
         </LinearLayout>
 

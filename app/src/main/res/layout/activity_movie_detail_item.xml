@@ -46,7 +46,7 @@
                     android:layout_marginTop="@dimen/def_clear_space" />
 
                 <TextView
-                    android:id="@+id/tv_release_date"
+                    android:id="@+id/tv_firs_air_date"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/def_large_clear_space" />

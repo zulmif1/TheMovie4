@@ -12,7 +12,7 @@ import android.view.ViewGroup;
 import android.widget.Toast;
 
 import id.ac.iainpekalongan.themovie4.R;
-import id.ac.iainpekalongan.themovie4.adapter.MovieAdapter;
+import id.ac.iainpekalongan.themovie4.adapter.TVAdapter;
 import id.ac.iainpekalongan.themovie4.api.APIClient;
 import id.ac.iainpekalongan.themovie4.model.TVModel;
 import id.ac.iainpekalongan.themovie4.util.Language;
@@ -35,7 +35,7 @@ public class TVFragment extends Fragment {
     @BindView(R.id.rv_tv_show)
     RecyclerView rv_upcoming;
 
-    private MovieAdapter adapter;
+    private TVAdapter adapter;
 
     private Call<TVModel> apiCall;
     private APIClient apiClient = new APIClient();
@@ -67,7 +67,7 @@ public class TVFragment extends Fragment {
     }
 
     private void setupList() {
-        adapter = new MovieAdapter();
+        adapter = new TVAdapter();
         rv_upcoming.setLayoutManager(new LinearLayoutManager(context));
         rv_upcoming.setAdapter(adapter);
     }

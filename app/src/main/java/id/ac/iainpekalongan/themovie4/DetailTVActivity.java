@@ -16,29 +16,27 @@ import android.widget.Toast;
 import com.bumptech.glide.Glide;
 import com.google.gson.Gson;
 
-import id.ac.iainpekalongan.themovie4.api.APIClient;
-import id.ac.iainpekalongan.themovie4.database.FavoriteHelper;
-import id.ac.iainpekalongan.themovie4.model.ResultsMovieItem;
-import id.ac.iainpekalongan.themovie4.model.detail.MovieDetailModel;
-import id.ac.iainpekalongan.themovie4.provider.FavoriteColumns;
-import id.ac.iainpekalongan.themovie4.util.DateTime;
-import id.ac.iainpekalongan.themovie4.util.Language;
-
-import java.text.NumberFormat;
 import java.util.List;
 
 import butterknife.BindView;
 import butterknife.BindViews;
 import butterknife.ButterKnife;
+import id.ac.iainpekalongan.themovie4.api.APIClient;
+import id.ac.iainpekalongan.themovie4.database.FavoriteHelper;
+import id.ac.iainpekalongan.themovie4.model.ResultsTVItem;
+import id.ac.iainpekalongan.themovie4.model.detail.TVDetailModel;
+import id.ac.iainpekalongan.themovie4.provider.FavoriteColumns;
+import id.ac.iainpekalongan.themovie4.util.DateTime;
+import id.ac.iainpekalongan.themovie4.util.Language;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
 import static id.ac.iainpekalongan.themovie4.provider.DatabaseContract.CONTENT_URI;
 
-public class DetailMovieActivity extends AppCompatActivity {
+public class DetailTVActivity extends AppCompatActivity {
 
-    public static final String MOVIE_ITEM = "movie_item";
+    public static final String TV_ITEM = "tv_item";
 
     @BindView(R.id.collapsing_toolbar)
     CollapsingToolbarLayout collapsing_toolbar;
@@ -56,7 +54,7 @@ public class DetailMovieActivity extends AppCompatActivity {
     ImageView img_poster;
 
     @BindView(R.id.tv_firs_air_date)
-    TextView tv_release_date;
+    TextView tv_first_air_date;
 
     @BindView(R.id.tv_vote)
     TextView tv_vote;
@@ -76,39 +74,24 @@ public class DetailMovieActivity extends AppCompatActivity {
     @BindView(R.id.tv_overview)
     TextView tv_overview;
 
-    @BindView(R.id.img_poster_belongs)
-    ImageView img_poster_belongs;
-
-    @BindView(R.id.tv_title_belongs)
-    TextView tv_title_belongs;
-
-    @BindView(R.id.tv_budget)
-    TextView tv_budget;
-
-    @BindView(R.id.tv_revenue)
-    TextView tv_revenue;
-
     @BindView(R.id.tv_companies)
     TextView tv_companies;
-
-    @BindView(R.id.tv_countries)
-    TextView tv_countries;
 
     @BindView(R.id.iv_fav)
     ImageView iv_fav;
 
-    private Call<MovieDetailModel> apiCall;
+    private Call<TVDetailModel> apiCall;
     private APIClient apiClient = new APIClient();
     private Gson gson = new Gson();
 
-    private ResultsMovieItem item;
+    private ResultsTVItem item;
     private FavoriteHelper favoriteHelper;
     private Boolean isFavorite = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_movie_detail);
+        setContentView(R.layout.activity_tv_detail);
 
         ButterKnife.bind(this);
         setSupportActionBar(toolbar);
@@ -116,8 +99,8 @@ public class DetailMovieActivity extends AppCompatActivity {
 
         collapsing_toolbar.setExpandedTitleColor(getResources().getColor(android.R.color.transparent));
 
-        String json = getIntent().getStringExtra(MOVIE_ITEM);
-        item = gson.fromJson(json, ResultsMovieItem.class);
+        String json = getIntent().getStringExtra(TV_ITEM);
+        item = gson.fromJson(json, ResultsTVItem.class);
         loadData();
 
         iv_fav.setOnClickListener(new View.OnClickListener() {
@@ -160,8 +143,8 @@ public class DetailMovieActivity extends AppCompatActivity {
         loadDataSQLite();
         loadDataInServer(String.valueOf(item.getId()));
 
-        getSupportActionBar().setTitle(item.getTitle());
-        tv_title.setText(item.getTitle());
+        getSupportActionBar().setTitle(item.getOriginalName());
+        tv_title.setText(item.getName());
 
         Glide.with(this)
                 .load(BuildConfig.BASE_URL_IMG + "w342" + item.getBackdropPath())
@@ -171,7 +154,7 @@ public class DetailMovieActivity extends AppCompatActivity {
                 .load(BuildConfig.BASE_URL_IMG + "w154" + item.getPosterPath())
                 .into(img_poster);
 
-        tv_release_date.setText(DateTime.getLongDate(item.getReleaseDate()));
+        tv_first_air_date.setText(DateTime.getLongDate(item.getFirstAirDate()));
         tv_vote.setText(String.valueOf(item.getVoteAverage()));
         tv_overview.setText(item.getOverview());
 
@@ -208,13 +191,13 @@ public class DetailMovieActivity extends AppCompatActivity {
         favoriteSet();
     }
 
-    private void loadDataInServer(String movie_item) {
-        apiCall = apiClient.getService().getDetailMovie(movie_item, Language.getCountry());
-        apiCall.enqueue(new Callback<MovieDetailModel>() {
+    private void loadDataInServer(String tv_item) {
+        apiCall = apiClient.getService().getDetailTV(tv_item, Language.getCountry());
+        apiCall.enqueue(new Callback<TVDetailModel>() {
             @Override
-            public void onResponse(Call<MovieDetailModel> call, Response<MovieDetailModel> response) {
+            public void onResponse(Call<TVDetailModel> call, Response<TVDetailModel> response) {
                 if (response.isSuccessful()) {
-                    MovieDetailModel item = response.body();
+                    TVDetailModel item = response.body();
 
                     int size = 0;
 
@@ -225,16 +208,6 @@ public class DetailMovieActivity extends AppCompatActivity {
                     }
                     tv_genres.setText(genres);
 
-                    if (item.getBelongsToCollection() != null) {
-                        Glide.with(DetailMovieActivity.this)
-                                .load(BuildConfig.BASE_URL_IMG + "w92" + item.getBelongsToCollection().getPosterPath())
-                                .into(img_poster_belongs);
-
-                        tv_title_belongs.setText(item.getBelongsToCollection().getName());
-                    }
-
-                    tv_budget.setText("$ " + NumberFormat.getIntegerInstance().format(item.getBudget()));
-                    tv_revenue.setText("$ " + NumberFormat.getIntegerInstance().format(item.getRevenue()));
 
                     String companies = "";
                     size = item.getProductionCompanies().size();
@@ -242,18 +215,11 @@ public class DetailMovieActivity extends AppCompatActivity {
                         companies += "√ " + item.getProductionCompanies().get(i).getName() + (i + 1 < size ? "\n" : "");
                     }
                     tv_companies.setText(companies);
-
-                    String countries = "";
-                    size = item.getProductionCountries().size();
-                    for (int i = 0; i < size; i++) {
-                        countries += "√ " + item.getProductionCountries().get(i).getName() + (i + 1 < size ? "\n" : "");
-                    }
-                    tv_countries.setText(countries);
                 } else loadFailed();
             }
 
             @Override
-            public void onFailure(Call<MovieDetailModel> call, Throwable t) {
+            public void onFailure(Call<TVDetailModel> call, Throwable t) {
                 loadFailed();
             }
         });
@@ -267,10 +233,10 @@ public class DetailMovieActivity extends AppCompatActivity {
         //Log.d("TAG", "FavoriteSave: " + item.getId());
         ContentValues cv = new ContentValues();
         cv.put(FavoriteColumns.COLUMN_ID, item.getId());
-        cv.put(FavoriteColumns.COLUMN_TITLE, item.getTitle());
+        cv.put(FavoriteColumns.COLUMN_TITLE, item.getName());
         cv.put(FavoriteColumns.COLUMN_BACKDROP, item.getBackdropPath());
         cv.put(FavoriteColumns.COLUMN_POSTER, item.getPosterPath());
-        cv.put(FavoriteColumns.COLUMN_RELEASE_DATE, item.getReleaseDate());
+        cv.put(FavoriteColumns.COLUMN_RELEASE_DATE, item.getFirstAirDate());
         cv.put(FavoriteColumns.COLUMN_VOTE, item.getVoteAverage());
         cv.put(FavoriteColumns.COLUMN_OVERVIEW, item.getOverview());
 

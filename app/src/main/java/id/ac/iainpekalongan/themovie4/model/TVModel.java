@@ -16,7 +16,7 @@ public class TVModel {
     private int totalPages;
 
     @SerializedName("results")
-    private List<ResultsMovieItem> results;
+    private List<ResultsTVItem> results;
 
     @SerializedName("total_results")
     private int totalResults;
@@ -45,11 +45,11 @@ public class TVModel {
         return totalPages;
     }
 
-    public void setResults(List<ResultsMovieItem> results) {
+    public void setResults(List<ResultsTVItem> results) {
         this.results = results;
     }
 
-    public List<ResultsMovieItem> getResults() {
+    public List<ResultsTVItem> getResults() {
         return results;
     }
 
