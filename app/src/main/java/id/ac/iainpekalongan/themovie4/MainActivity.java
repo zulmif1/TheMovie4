@@ -5,6 +5,8 @@ import android.os.Bundle;
 import android.provider.Settings;
 import android.support.design.widget.NavigationView;
 import android.support.design.widget.TabLayout;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
@@ -14,10 +16,13 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import id.ac.iainpekalongan.themovie4.feature.MoviesFragment;
 import id.ac.iainpekalongan.themovie4.util.ATabPager;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+
+import static id.ac.iainpekalongan.themovie4.BaseAppCompactActivity.KEY_FRAGMENT;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener,
@@ -38,6 +43,9 @@ public class MainActivity extends AppCompatActivity
     @BindView(R.id.view_pager)
     ViewPager viewPager;
 
+    private Fragment pageContent = new MoviesFragment();
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -48,9 +56,17 @@ public class MainActivity extends AppCompatActivity
         setSupportActionBar(toolbar);
 
         setupDrawer();
-        setupTab();
 
-        selectNav(0);
+
+        if (savedInstanceState == null) {
+            setupTab();
+            selectNav(0);
+        }else{
+//            viewPager.setAdapter(ATabPager(getSupportFragmentManager().getFragment(savedInstanceState, KEY_FRAGMENT)));
+//            pageContent =getSupportFragmentManager().getFragment(savedInstanceState, KEY_FRAGMENT);
+//            viewPager.setAdapter(new ATabPager(pageContent));
+//            tabLayout.setupWithViewPager(viewPager);
+        }
     }
 
     @Override
@@ -71,12 +87,8 @@ public class MainActivity extends AppCompatActivity
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
 
-        //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
             Intent intent = new Intent(Settings.ACTION_LOCALE_SETTINGS);
             startActivity(intent);
@@ -89,7 +101,6 @@ public class MainActivity extends AppCompatActivity
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
-        // Handle navigation view item clicks here.
         int id = item.getItemId();
 
         if (id == R.id.nav_movies) selectTab(0);
@@ -98,6 +109,14 @@ public class MainActivity extends AppCompatActivity
 
         drawerLayout.closeDrawer(GravityCompat.START);
         return true;
+    }
+
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        if (pageContent.isAdded()) {
+            getSupportFragmentManager().putFragment(outState, KEY_FRAGMENT, pageContent);
+        }
     }
 
     /**
