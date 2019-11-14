@@ -3,7 +3,7 @@
 
     <string name="action_settings">Settings</string>
 
-    <string name="err_load_failed">Failed to load data.\nPlease check your Internet connections!</string>
+    <string name="err_load_failed">Gagal memuat data.\nSilahkan periksa koneksi internet!</string>
 
     <string name="label_movies">Film</string>
     <string name="label_tv_show">Tayangan TV</string>
@@ -17,18 +17,7 @@
 
     <string name="cv_save">Tambah kesukaan</string>
 
-    <string name="appwidget_text">Film Kesukaan</string>
-    <string name="empty_text">Tidak ada kesukaan</string>
     <string name="label_first_air_date">Pertama kali tayang</string>
     <string name="creator">Ahmad Rosyid</string>
-    <string name="label_belongs">Milik koleksi</string>
-    <string name="label_budget">Biaya</string>
-    <string name="label_companies">Perusahaan</string>
-    <string name="label_countries">Negara</string>
-    <string name="label_movie_genres">Aliran Film</string>
-    <string name="label_production_details">Detail Poduksi</string>
-    <string name="label_release_date">Tanggal Tayang</string>
-    <string name="label_revenue">Pendapatan</string>
-    <string name="urlprofil">https://www.iainpekalongan.ac.id/</string>
     <string name="cv_remove">Dihapus dari kesukaan</string>
 </resources>

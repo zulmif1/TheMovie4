@@ -21,8 +21,6 @@
     <string name="cv_save">Add to favorite</string>
     <string name="cv_remove">Delete from favorite</string>
 
-    <string name="appwidget_text">Favorite Movies</string>
-    <string name="empty_text">You dont have favorite movies yet</string>
     <string name="label_first_air_date">First Air Date</string>
     <string name="creator">Ahmad Rosyid</string>
 </resources>

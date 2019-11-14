@@ -3,6 +3,7 @@ package id.ac.iainpekalongan.themovie4.feature;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -11,9 +12,14 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import id.ac.iainpekalongan.themovie4.R;
 import id.ac.iainpekalongan.themovie4.adapter.TVAdapter;
 import id.ac.iainpekalongan.themovie4.api.APIClient;
+import id.ac.iainpekalongan.themovie4.model.ResultsMovieItem;
+import id.ac.iainpekalongan.themovie4.model.ResultsTVItem;
 import id.ac.iainpekalongan.themovie4.model.TVModel;
 import id.ac.iainpekalongan.themovie4.util.Language;
 
@@ -23,6 +29,9 @@ import butterknife.Unbinder;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
+
+import static id.ac.iainpekalongan.themovie4.BaseFragment.KEY_MOVIES;
+import static id.ac.iainpekalongan.themovie4.BaseFragment.KEY_TV;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -39,6 +48,7 @@ public class TVFragment extends Fragment {
 
     private Call<TVModel> apiCall;
     private APIClient apiClient = new APIClient();
+    private List<ResultsTVItem> tv = new ArrayList<>();
 
     public TVFragment() {
         // Required empty public constructor
@@ -54,7 +64,12 @@ public class TVFragment extends Fragment {
         unbinder = ButterKnife.bind(this, view);
 
         setupList();
-        loadData();
+        if (savedInstanceState == null) {
+            loadData();
+        } else {
+            tv = (List) savedInstanceState.getParcelableArrayList(KEY_TV);
+            adapter.replaceAll(tv);
+        }
 
         return view;
     }
@@ -79,6 +94,7 @@ public class TVFragment extends Fragment {
             public void onResponse(Call<TVModel> call, Response<TVModel> response) {
                 if (response.isSuccessful()) {
                     adapter.replaceAll(response.body().getResults());
+                    tv=response.body().getResults();
                 } else loadFailed();
             }
 
@@ -87,6 +103,12 @@ public class TVFragment extends Fragment {
                 loadFailed();
             }
         });
+    }
+
+    @Override
+    public void onSaveInstanceState(@NonNull Bundle outState) {
+        outState.putParcelableArrayList(KEY_TV, (ArrayList) tv);
+        super.onSaveInstanceState(outState);
     }
 
     private void loadFailed() {

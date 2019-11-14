@@ -22,7 +22,6 @@ import id.ac.iainpekalongan.themovie4.util.ATabPager;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-import static id.ac.iainpekalongan.themovie4.BaseAppCompactActivity.KEY_FRAGMENT;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener,
@@ -57,16 +56,8 @@ public class MainActivity extends AppCompatActivity
 
         setupDrawer();
 
-
-        if (savedInstanceState == null) {
             setupTab();
             selectNav(0);
-        }else{
-//            viewPager.setAdapter(ATabPager(getSupportFragmentManager().getFragment(savedInstanceState, KEY_FRAGMENT)));
-//            pageContent =getSupportFragmentManager().getFragment(savedInstanceState, KEY_FRAGMENT);
-//            viewPager.setAdapter(new ATabPager(pageContent));
-//            tabLayout.setupWithViewPager(viewPager);
-        }
     }
 
     @Override
@@ -109,14 +100,6 @@ public class MainActivity extends AppCompatActivity
 
         drawerLayout.closeDrawer(GravityCompat.START);
         return true;
-    }
-
-    @Override
-    protected void onSaveInstanceState(Bundle outState) {
-        super.onSaveInstanceState(outState);
-        if (pageContent.isAdded()) {
-            getSupportFragmentManager().putFragment(outState, KEY_FRAGMENT, pageContent);
-        }
     }
 
     /**

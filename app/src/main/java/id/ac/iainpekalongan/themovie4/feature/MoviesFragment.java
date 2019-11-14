@@ -3,6 +3,8 @@ package id.ac.iainpekalongan.themovie4.feature;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.os.Parcelable;
+import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -11,10 +13,14 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import id.ac.iainpekalongan.themovie4.R;
 import id.ac.iainpekalongan.themovie4.adapter.MovieAdapter;
 import id.ac.iainpekalongan.themovie4.api.APIClient;
 import id.ac.iainpekalongan.themovie4.model.MoviesModel;
+import id.ac.iainpekalongan.themovie4.model.ResultsMovieItem;
 import id.ac.iainpekalongan.themovie4.util.Language;
 
 import butterknife.BindView;
@@ -23,6 +29,8 @@ import butterknife.Unbinder;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
+
+import static id.ac.iainpekalongan.themovie4.BaseFragment.KEY_MOVIES;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -40,6 +48,8 @@ public class MoviesFragment extends Fragment {
     private Call<MoviesModel> apiCall;
     private APIClient apiClient = new APIClient();
 
+    private List<ResultsMovieItem> movies = new ArrayList<>();
+
     public MoviesFragment() {
         // Required empty public constructor
     }
@@ -54,7 +64,12 @@ public class MoviesFragment extends Fragment {
         unbinder = ButterKnife.bind(this, view);
 
         setupList();
-        loadData();
+        if (savedInstanceState == null) {
+            loadData();
+        } else {
+            movies = (List) savedInstanceState.getParcelableArrayList(KEY_MOVIES);
+            adapter.replaceAll(movies);
+        }
 
         return view;
     }
@@ -79,6 +94,7 @@ public class MoviesFragment extends Fragment {
             public void onResponse(Call<MoviesModel> call, Response<MoviesModel> response) {
                 if (response.isSuccessful()) {
                     adapter.replaceAll(response.body().getResults());
+                    movies=response.body().getResults();
                 } else loadFailed();
             }
 
@@ -87,6 +103,12 @@ public class MoviesFragment extends Fragment {
                 loadFailed();
             }
         });
+    }
+
+    @Override
+    public void onSaveInstanceState(@NonNull Bundle outState) {
+        outState.putParcelableArrayList(KEY_MOVIES, (ArrayList) movies);
+        super.onSaveInstanceState(outState);
     }
 
     private void loadFailed() {
