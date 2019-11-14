@@ -30,7 +30,6 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-import static id.ac.iainpekalongan.themovie4.BaseFragment.KEY_MOVIES;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -67,7 +66,7 @@ public class MoviesFragment extends Fragment {
         if (savedInstanceState == null) {
             loadData();
         } else {
-            movies = (List) savedInstanceState.getParcelableArrayList(KEY_MOVIES);
+            movies = (List) savedInstanceState.getParcelableArrayList("movies");
             adapter.replaceAll(movies);
         }
 
@@ -94,7 +93,7 @@ public class MoviesFragment extends Fragment {
             public void onResponse(Call<MoviesModel> call, Response<MoviesModel> response) {
                 if (response.isSuccessful()) {
                     adapter.replaceAll(response.body().getResults());
-                    movies=response.body().getResults();
+                    movies = response.body().getResults();
                 } else loadFailed();
             }
 
@@ -107,7 +106,7 @@ public class MoviesFragment extends Fragment {
 
     @Override
     public void onSaveInstanceState(@NonNull Bundle outState) {
-        outState.putParcelableArrayList(KEY_MOVIES, (ArrayList) movies);
+        outState.putParcelableArrayList("movies", (ArrayList) movies);
         super.onSaveInstanceState(outState);
     }
 

@@ -1,9 +1,12 @@
 package id.ac.iainpekalongan.themovie4.model;
 
 import android.database.Cursor;
+import android.os.Parcel;
+import android.os.Parcelable;
 
 import com.google.gson.annotations.SerializedName;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import static android.provider.BaseColumns._ID;
@@ -16,7 +19,7 @@ import static id.ac.iainpekalongan.themovie4.provider.FavoriteColumns.COLUMN_POS
 import static id.ac.iainpekalongan.themovie4.provider.FavoriteColumns.COLUMN_RELEASE_DATE;
 import static id.ac.iainpekalongan.themovie4.provider.FavoriteColumns.COLUMN_VOTE;
 
-public class ResultsTVItem {
+public class ResultsTVItem implements Parcelable {
 
     @SerializedName("overview")
     private String overview;
@@ -179,4 +182,53 @@ public class ResultsTVItem {
                         ",vote_count = '" + voteCount + '\'' +
                         "}";
     }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(this.overview);
+        dest.writeString(this.originalLanguage);
+        dest.writeString(this.originalName);
+        dest.writeString(this.name);
+        dest.writeList(this.genreIds);
+        dest.writeString(this.posterPath);
+        dest.writeString(this.backdropPath);
+        dest.writeString(this.firstAirDate);
+        dest.writeDouble(this.voteAverage);
+        dest.writeDouble(this.popularity);
+        dest.writeInt(this.id);
+        dest.writeInt(this.voteCount);
+    }
+
+    protected ResultsTVItem(Parcel in) {
+        this.overview = in.readString();
+        this.originalLanguage = in.readString();
+        this.originalName = in.readString();
+        this.name = in.readString();
+        this.genreIds = new ArrayList<Integer>();
+        in.readList(this.genreIds, Integer.class.getClassLoader());
+        this.posterPath = in.readString();
+        this.backdropPath = in.readString();
+        this.firstAirDate = in.readString();
+        this.voteAverage = in.readDouble();
+        this.popularity = in.readDouble();
+        this.id = in.readInt();
+        this.voteCount = in.readInt();
+    }
+
+    public static final Parcelable.Creator<ResultsTVItem> CREATOR = new Parcelable.Creator<ResultsTVItem>() {
+        @Override
+        public ResultsTVItem createFromParcel(Parcel source) {
+            return new ResultsTVItem(source);
+        }
+
+        @Override
+        public ResultsTVItem[] newArray(int size) {
+            return new ResultsTVItem[size];
+        }
+    };
 }

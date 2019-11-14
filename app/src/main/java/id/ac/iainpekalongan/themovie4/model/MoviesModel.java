@@ -8,7 +8,7 @@ import com.google.gson.annotations.SerializedName;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MoviesModel implements Parcelable {
+public class MoviesModel {
 
     @SerializedName("dates")
     private Dates dates;
@@ -75,19 +75,6 @@ public class MoviesModel implements Parcelable {
                         ",results = '" + results + '\'' +
                         ",total_results = '" + totalResults + '\'' +
                         "}";
-    }
-
-    @Override
-    public int describeContents() {
-        return 0;
-    }
-
-    @Override
-    public void writeToParcel(Parcel dest, int flags) {
-        dest.writeInt(this.page);
-        dest.writeInt(this.totalPages);
-        dest.writeList(this.results);
-        dest.writeInt(this.totalResults);
     }
 
     public MoviesModel() {

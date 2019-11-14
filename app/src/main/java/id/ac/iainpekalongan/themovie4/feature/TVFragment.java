@@ -30,8 +30,6 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-import static id.ac.iainpekalongan.themovie4.BaseFragment.KEY_MOVIES;
-import static id.ac.iainpekalongan.themovie4.BaseFragment.KEY_TV;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -67,7 +65,7 @@ public class TVFragment extends Fragment {
         if (savedInstanceState == null) {
             loadData();
         } else {
-            tv = (List) savedInstanceState.getParcelableArrayList(KEY_TV);
+            tv = (List) savedInstanceState.getParcelableArrayList("tv");
             adapter.replaceAll(tv);
         }
 
@@ -94,7 +92,7 @@ public class TVFragment extends Fragment {
             public void onResponse(Call<TVModel> call, Response<TVModel> response) {
                 if (response.isSuccessful()) {
                     adapter.replaceAll(response.body().getResults());
-                    tv=response.body().getResults();
+                    tv = response.body().getResults();
                 } else loadFailed();
             }
 
@@ -107,7 +105,7 @@ public class TVFragment extends Fragment {
 
     @Override
     public void onSaveInstanceState(@NonNull Bundle outState) {
-        outState.putParcelableArrayList(KEY_TV, (ArrayList) tv);
+        outState.putParcelableArrayList("tv", (ArrayList) tv);
         super.onSaveInstanceState(outState);
     }
 
