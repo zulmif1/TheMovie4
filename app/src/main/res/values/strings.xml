@@ -23,4 +23,7 @@
 
     <string name="label_first_air_date">First Air Date</string>
     <string name="creator">Ahmad Rosyid</string>
+    <string name="img_backdrop">Img Backdrop</string>
+    <string name="img_poster">Img Poster</string>
+    <string name="fav">Img Fav</string>
 </resources>
