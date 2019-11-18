@@ -56,12 +56,6 @@
             android:exported="true"
             android:readPermission="id.ac.iainpekalongan.themovie4.READ_DATABASE"
             android:writePermission="id.ac.iainpekalongan.themovie4.WRITE_DATABASE" />
-
-        <service
-            android:name=".widget.StackWidgetService"
-            android:enabled="true"
-            android:exported="true"
-            android:permission="android.permission.BIND_REMOTEVIEWS"></service>
     </application>
 
 </manifest>
